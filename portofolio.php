@@ -20,6 +20,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificate">Certificate</a></li>
                 <li><a href="#hobi">Hobi</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -327,6 +328,43 @@
             </div>
         </div>
     </section>
+
+    <!-- Certificate -->
+     <section class="certificate" id="certificate">
+        <div>
+                <span class="section-tag reveal">Certificate</span>
+                <h2 class="section-title reveal">Sertifikat</h2>
+                <p class="section-desc reveal">Sertifikat yang saya peroleh selama pembelajaran.</p>
+    
+                <div class="certificate-grid">
+                    <div class="certificate-card reveal">
+                        <img src="Dasar_data_science.png" alt="Certificate Dasar Data Science" class="certificate-image">
+                        <h3>Belajar Dasar Data Science</h3>
+                        <p>Coding Camp DBS Foundation</p>
+                    </div>
+                    <div class="certificate-card reveal">
+                        <img src="image.png" alt="Certificate Machine Learning" class="certificate-image">
+                        <h3>Machine Learning Untuk Pemula</h3>
+                        <p>Coding Camp DBS Foundation</p>
+                    </div>
+                    <div class="certificate-card reveal">
+                        <img src="Fundamental_analisis_data.png" alt="Certificate Fundamental Analisis Data" class="certificate-image">
+                        <h3>Fundamental Analisis Data</h3>
+                        <p>Coding Camp DBS Foundation</p>
+                    </div>
+                    <div class="certificate-card reveal">
+                        <img src="Dasar_visualisasi.png" alt="Certificate Visualisasi Data" class="certificate-image">
+                        <h3>Belajar Visualisasi Data</h3>
+                        <p>Coding Camp DBS Foundation</p>
+                    </div>
+                    <div class="certificate-card reveal">
+                        <img src="python.png" alt="Certificate Pemrograman Python" class="certificate-image">
+                        <h3>Memulai Pemrograman Dengan Python</h3>
+                        <p>Coding Camp DBS Foundation</p>
+                    </div>
+                </div>
+        </div>
+     </section>
 
     <!-- ========== HOBI SECTION ========== -->
     <section class="hobbies" id="hobi">

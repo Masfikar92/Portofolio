@@ -6,96 +6,122 @@ Dokumen ini memberikan penjelasan teknis yang sangat rinci (baris-per-baris / bl
 
 ## 1. Penjelasan Detail `portofolio.php` (Struktur HTML)
 
-File ini berisi kerangka dasar (*markup*) dari website.
+File ini berisi kerangka dasar (*markup*) dari website. Halaman ini menggunakan arsitektur Single Page Application (SPA) semu, dimana navigasi hanya melakukan *scrolling* antar bagian halaman.
 
 ### A. Bagian Header & Metadata (`<head>`)
-- `<!DOCTYPE html>`: Deklarasi bahwa dokumen ini menggunakan HTML5.
-- `<meta charset="UTF-8">`: Mengatur pengkodean karakter agar mendukung semua simbol dan teks (termasuk emoji).
-- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Sangat penting untuk *responsive design*; memastikan ukuran website menyesuaikan layar perangkat (HP/Tablet/PC).
-- `<link rel="stylesheet" href="portofolio.css">`: Menghubungkan file HTML ini dengan desain visual yang ada di `portofolio.css`.
+- `<!DOCTYPE html>`: Deklarasi bahwa dokumen ini menggunakan standar HTML5 terbaru.
+- `<meta charset="UTF-8">`: Mengatur pengkodean karakter (UTF-8) agar browser mengenali huruf, simbol, dan emoji dengan benar.
+- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Mengontrol zoom dan lebar halaman agar *responsive* saat dibuka di layar HP maupun layar desktop.
+- `<title>Portofolio</title>`: Judul tab web browser.
+- `<link rel="stylesheet" href="portofolio.css">`: Memanggil file CSS (`portofolio.css`) yang memuat seluruh *styling* dan desain visual.
 
 ### B. Navbar / Navigasi Utama (`<nav id="navbar">`)
-- `<a href="#home" class="nav-logo">`: Logo teks portofolio. Atribut `href="#home"` berfungsi sebagai tautan *anchor* agar ketika diklik, halaman akan menggulir kembali ke atas (bagian id="home").
-- `<ul class="nav-links">`: Daftar (*list*) menu navigasi (Home, About, Skills, dll).
-- `<div class="hamburger">`: Tombol menu khusus untuk tampilan *mobile* (layar kecil). Di dalamnya terdapat tiga `<span>` yang nantinya oleh CSS dibentuk menjadi tiga garis horizontal (garis hamburger).
+- **Struktur**: Navigasi di-*pin* ke bagian atas dengan efek perubahan warna/transparansi saat pengunjung melakukan scroll.
+- **Logo**: `<a href="#home" class="nav-logo">PORTO<span>FOLIO</span></a>`. Tag `<span>` membungkus tulisan "FOLIO" agar memiliki gaya tersendiri (berwarna merah/blood).
+- **Tautan Menu (`<ul class="nav-links">`)**: Berisi tautan `<a>` ke berbagai ID pada halaman (seperti `#home`, `#about`, `#skills`, dll).
+- **Tombol Hamburger (`<div class="hamburger">`)**: Menu khusus untuk tampilan seluler (HP). Terdiri dari 3 `<span>` yang membentuk ikon baris tiga yang bisa dianimasikan menjadi bentuk 'X' melalui JavaScript.
 
 ### C. Hero Section (`<section id="home">`)
-- `<div class="hero-bg">`: Berisi elemen `<video autoplay muted loop playsinline>`. Atribut `autoplay` membuat video otomatis diputar, `muted` membisukan suara (diwajibkan oleh browser agar *autoplay* bekerja), dan `loop` mengulang video terus-menerus.
-- `<h1 class="hero-name">`: Judul utama yang memuat nama Anda. Terdapat tag `<span>` dengan class `highlight` di nama belakang untuk diberikan efek warna spesifik dan animasi *glitch* di CSS.
-- `<p class="hero-role"><span class="typed-text"></span></p>`: Paragraf untuk peran/profesi. Di sinilah animasi Javascript (*typing effect*) bekerja dan menyuntikkan teks secara berulang.
-- `<div class="hero-scroll-indicator">`: Elemen visual di bagian bawah layar hero yang memberikan petunjuk (*clue*) kepada pengunjung untuk menggulir ke bawah.
+- **Video Background (`<div class="hero-bg">`)**: Menggunakan `<video>` dengan atribut `autoplay` (jalan otomatis), `muted` (tanpa suara - wajib agar bisa otomatis diputar di browser), dan `loop` (diulang terus-menerus).
+- **Hero Content (`<div class="hero-content">`)**:
+  - `<div class="hero-tag">PERSONAL PORTOFOLIO</div>`: Label pengantar kecil dengan gaya *military text*.
+  - `<h1 class="hero-name">`: Judul utama yang menggunakan animasi *glitch* pada tag `<span>` dengan kelas `highlight`.
+  - `<p class="hero-role">`: Menggunakan `<span class="typed-text">` yang nantinya diinjeksikan teks yang diketik secara berulang (efek mengetik) menggunakan program JavaScript.
+- **Indikator Scroll (`<div class="hero-scroll-indicator">`)**: Elemen desain garis panah animasi jatuh yang menunjukkan bahwa ada konten di bawah jika pengunjung menggulir layar.
 
-### D. Konten Halaman (About, Skills, Projects, Hobbies, Contact)
-- **`<section>`**: Setiap bagian konten dibungkus dengan tag `<section>` dan diberi atribut `id` yang unik (contoh: `id="about"`). Atribut `id` ini saling terhubung dengan navigasi Navbar.
-- **`class="container"`**: Elemen pembungkus internal untuk membatasi lebar konten agar tidak terlalu melebar hingga ke ujung layar.
-- **`class="reveal"`**: Anda akan melihat banyak elemen seperti `<h2 class="section-title reveal">` atau `<div class="skill-card reveal">`. Kelas `reveal` ini adalah penanda (marker) yang nantinya ditangkap oleh *JavaScript* untuk diberikan efek animasi *fade-in* saat elemen tersebut mulai terlihat di layar.
-- **Elemen SVG (`<svg>`)**: Digunakan secara ekstensif pada bagian *Skills*, *Projects*, *Hobbies*, dan *Contact* untuk menampilkan ikon (logo). SVG dipilih karena tidak pecah saat diperbesar dan ukurannya sangat ringan dibandingkan format gambar tradisional (JPG/PNG).
+### D. About Section (`<section id="about">`)
+- **Grid Layout**: Menggunakan dua kolom (kiri: foto, kanan: teks) pada desktop menggunakan CSS Grid (`.about-grid`).
+- **Foto Profil (`<div class="about-image-wrapper">`)**: Gambar profil ditambah dengan `<div class="scan-line">` untuk menampilkan efek animasi garis *scan* layaknya pemindai antarmuka *sci-fi*.
+- **Informasi Personal (`<div class="about-info-grid">`)**: Menampilkan blok-blok kartu informasi kecil dan elegan (berbentuk asimetris/poligon) seperti Nama, Universitas, Jurusan, dan Minat.
 
-### E. Footer & Script Import
-- `<script src="script.js"></script>`: Diletakkan tepat di atas `</body>`. Menghubungkan logika JavaScript ke HTML. Penempatannya di paling bawah bertujuan agar seluruh elemen HTML dimuat (di-*render*) terlebih dahulu oleh browser sebelum JavaScript dijalankan (menghindari error referensi).
+### E. Skills Section (`<section id="skills">`)
+- Menampilkan *grid* kemampuan pengguna (Data Science, Data Analyst, Machine Learning, UI/UX Design).
+- Setiap *skill* berada di dalam kotak `<div class="skill-card">` yang memiliki `<svg>` khusus untuk mewakili logo/ikon spesifik keahlian tersebut. Format SVG memastikan logo bersih tanpa pecah. Ikon bereaksi dan berputar secara 3D ketika dikenai kursor (*hover*).
+
+### F. Projects Section (`<section id="projects">`)
+- Memuat riwayat portofolio proyek dalam bentuk pembagian kartu `<div class="portfolio-grid">`.
+- Terdapat 9 proyek spesifik yang ditambahkan, contohnya "Prediksi Harga Mobil", "Fraud Detection", "Segmentasi Pelanggan", hingga "UMKM Management System".
+- Masing-masing kotak memiliki badge kategori dan tautan panah menyilang yang dihubungkan langsung ke repositori *GitHub* menggunakan atribut `target="_blank"` agar aman terbuka di tab peramban baru.
+
+### G. Certificate Section (`<section id="certificate">`)
+- Menggunakan grid layout bernama `.certificate-grid` untuk menyusun sertifikat secara sejajar.
+- Daftar 5 sertifikat diambil langsung dari aset direktori:
+  1. Dasar_data_science.png
+  2. image.png
+  3. Fundamental_analisis_data.png
+  4. Dasar_visualisasi.png
+  5. python.png
+- Gambar diatur menggunakan pengaturan responsif yang presisi: `width: 100%`, `aspect-ratio: 4/3`, dan dikendalikan properti `object-fit: contain` untuk menghindarkan bagian sertifikat dari efek terpotong (cropping), serta ditambah bingkai bayangan transparan untuk membuat sertifikat muncul kokoh di dalam box *(card)*.
+
+### H. Hobbies Section (`<section id="hobi">`)
+- Menggunakan 3 buah *card* untuk menjabarkan hobi spesifik (Lari, Bermain Game, Menonton).
+- Bagian latar atas kartu (`.hobby-visual`) menggunakan ilustrasi pola grid halus (*grid pattern*) dengan varian warna bergradasi berbeda (berbasis dari warna merah, cyan, dan ungu) lalu menumpangkan gambar grafis vektor SVG di hadapannya.
+
+### I. Contact Section (`<section id="contact">`)
+- **Info Kontak**: Menyajikan representasi visual alamat surel (Email) dan nomor seluler (WhatsApp).
+- **Tombol WhatsApp (`<a class="wa-button">`)**: Tombol yang memuat mekanisme pengalihan cepat (Chat Now) ke dalam API resmi `https://wa.me/62...`. Desainnya diberikan sentuhan hijau cerah ala WA yang mencuat dramatis ketika *hovered* agar menggugah pengunjung untuk menekan tombol kolaborasi.
+
+### J. Elemen Khusus & Penutup
+- `<div class="particles"></div>`: Tampil sebagai *container* kosong yang nantinya bertindak bagaikan akuarium luas untuk diisi oleh puluhan elemen partikel debu melayang yang direplikasi mandiri (dibuat secara manipulatif) dari Javascript.
+- `<script src="script.js"></script>`: Dipanggil di akhir baris persis di atas tag tubuh penutup (`</body>`). Aturan krusial ini agar *script* memproses semua logikanya HANYA setelah elemen antarmuka DOM selesai didirikan oleh *browser*.
 
 ---
 
-## 2. Penjelasan Detail `portofolio.css` (Gaya / Visual)
+## 2. Penjelasan Detail `portofolio.css` (Gaya dan Tampilan)
 
-File stylesheet dengan hampir 1700 baris ini bertanggung jawab penuh atas nuansa *cyberpunk / mecha*.
+File `portofolio.css` (mencapai sekitar nyaris 1600 baris kode) bertanggung jawab melukis dan membentuk rangka menjadi karya utuh. Konsep desain yang diusung adalah *Anime 86, Mecha Aesthetic, Dark Military*.
 
-### A. Konfigurasi Dasar & Variabel Global (`:root`)
-- Bagian `:root { ... }` mendefinisikan puluhan variabel (seperti `--bg-primary: #050508;`, `--color-blood: #dc2626;`). Ini memudahkan pergantian tema. Jika Anda ingin mengubah warna merah darah menjadi warna lain (misal hijau neon), Anda cukup mengubah variabel `--color-blood` di satu tempat ini, dan seluruh website akan otomatis mengikuti.
+### A. CSS Variabel & Root (`:root`)
+- **Pewarnaan Variabel (`--bg-...`, `--color-...`)**: Semua rujukan palet warna diikat di dalam variabel. Contoh utama adalah warna aksen merah utama dinamakan `--color-blood: #dc2626;`. Pendekatan cerdas ini berguna andai di kemudian hari desainer bosan dan ingin beralih tema (katakanlah mode Neon Ungu), cukup mengubah satu baris variabel di atas, maka imbas warna akan menjalar sendiri ke seluruh sistem.
+- **Tipografi (`--font-...`)**: Mengawinkan 3 *font family* utama: `Rajdhani` (untuk tajuk-tajuk kaku/berat), `Orbitron` (untuk label, indikator mekanis), dan `Inter` (sebagai bantalan tulisan paragraf reguler).
 
-### B. Reset & CRT Effect
-- `* { margin: 0; padding: 0; box-sizing: border-box; }`: Mengkalibrasi ulang jarak dasar (*reset*) agar tampilan identik di semua jenis browser (Chrome, Firefox, Safari).
-- `body::before` (CRT Effect): Membuat garis-*garis* horizontal transparan menggunakan `repeating-linear-gradient` dengan rentang jarak `2px`. Menutupi seluruh viewport (layar) dengan `pointer-events: none` agar tidak menghalangi kursor saat mengklik tombol di bawahnya.
-- `body::after` (Vignette): Membuat gradasi radial hitam transparan di sudut-sudut layar agar fokus pengguna tertuju ke tengah layar.
+### B. Global Reset & CRT Display Overlay
+- Semua batas tepian dikalibrasi titik nol: `margin: 0`, `padding: 0`, `box-sizing: border-box`.
+- **Efek Pendar CRT (`body::before`)**: Sebuah latar tembus pandang yang disematkan persisten pada posisi absolut/fixed. Menerapkan pengulangan gradien linear (`repeating-linear-gradient`) untuk menduplikasi tekstur garis (*scanline*) ala monitor tabung tua mesin perang atau komputer zaman dulu. Diberikan properti `pointer-events: none` agar keutuhan mouse (klik) yang tembus ke laman tidak dicegat oleh filter CRT ini.
+- **Efek Kamera Vignette (`body::after`)**: Sebuah gradasi radial dari bening bertransformasi hitam saat menyentuh sudut ekstrem monitor. Hal itu memberi dimensi seolah kita menonton *interface* dari sebuah lensa optik yang gelap tepinya.
 
-### C. Animasi Spesifik (Keyframes)
-- `@keyframes spin`: Digunakan pada target reticle bulat di bagian *Hero Section*. Nilainya dirotasi dari `0deg` ke `360deg` secara konstan (*linear infinite*).
-- `@keyframes glitch-anim-1 & 2`: Kode kompleks yang menggunakan properti `clip-path: inset(...)`. Ini memotong sebagian kecil dari tulisan "ZULFIKAR" secara acak dan menggesernya (`transform: translate`) sepersekian milidetik, menciptakan ilusi layar rusak (*glitch*). Efek ini memanfaatkan elemen semu `::before` (berwarna cyan) dan `::after` (berwarna merah) yang ditumpuk di atas tulisan aslinya.
-- `@keyframes blink`: Mengatur `border-color` berkedip dari berwarna menjadi transparan untuk memberikan ilusi kursor *text-editor* yang sedang berkedip di tulisan "Data Science".
+### C. Efek Glitch Asimetris & Animasi (Keyframes)
+- **`@keyframes glitch-anim-1` & `glitch-anim-2`**: Digunakan untuk menyimulasikan teks "ZULFIKAR" yang rusak akibat *noise* teknis. Kloningan ilusi dari pseudo `::before` & `::after` dipotong acak dengan persentase sembarang (menggunakan teknik `clip-path: inset()`) dan disenggol secara sporadis (`translate`) dalam rentang 1 hingga 2 detik secara bergantian warna biru dan merah.
+- **`@keyframes scan`**: Menciptakan sebilah pemindai optikal buatan (terkait bagian muka About). Garis merah murni dianimasikan terus berlari dari `top: 20px` anjlok hingga pangkal bawah dihitung berdasar waktu secara `linear infinite`.
+- **`@keyframes bounce` & `scrollDown`**: Memberi gerakan naik-turun memantul perlahan untuk membujuk atensi mata menggulir layar turun.
 
-### D. Teknik Layout dan Desain
-- **CSS Grid (`display: grid;`)**: Sangat dominan digunakan di `.skills-grid`, `.portfolio-grid`, dll. Sangat kuat untuk membagi konten secara rapi (misal: `grid-template-columns: repeat(3, 1fr)` membagi grid menjadi 3 kolom yang lebarnya presisi sama besar).
-- **Glassmorphism / Blurring**: Menggunakan properti `backdrop-filter: blur(10px)` pada latar elemen (*Navbar* yang di-scroll dan kartu *Skills*) agar latar belakang (baik warna maupun partikel) tampak buram tembus pandang menyerupai kaca es.
-- **Bentuk Geometris Khusus (Clip-Path)**: Tombol (`.btn-primary`), dan beberapa kartu menggunakan `clip-path: polygon(...)`. Daripada menggunakan border-radius yang membuat kotak menjadi bulat, metode polygon memotong sudut kotak menjadi miring, menghasilkan bentuk pelat baja/pesawat fiksi ilmiah.
-
-### E. Media Queries (Responsivitas)
-- `@media (max-width: 1024px) { ... }`: Jika lebar layar di bawah 1024px (Tablet). Grid kolom dikurangi menjadi 2 baris agar konten tidak terlalu sempit.
-- `@media (max-width: 768px) { ... }`: Jika layar selebar HP. Grid dikompres menjadi 1 kolom (`1fr`). *Navbar* disembunyikan menggunakan posisi absolut/fixed ke sebelah kanan (`right: -100%`) dan hanya akan muncul jika kelas `.open` ditambahkan lewat JavaScript.
+### D. Manipulasi Bentuk (Clip-Path) dan Kaca (Glassmorphism)
+- Banyak komponen seperti kotak skil (`.skill-card`), tombol primer (`.btn-primary`), dan panel info mengabaikan perulangan standar membulat `border-radius`. Mereka memakai metode memotong titik sudut asimetris menggunakan `clip-path: polygon(...)`. Pemotongan (chamfered edges) ala lempengan zirah mekanikal merupakan teknik definitif nuansa *cyberpunk / 86 mecha*.
+- Menu *Navbar* di atas diberikan perintah `backdrop-filter: blur(25px);` saat ter-scroll, melebur warna buram dan bias memudar di area belakangan menu tersebut seolah menggunakan lembaran kaca.
 
 ---
 
-## 3. Penjelasan Detail `script.js` (Logika & Interaktivitas)
+## 3. Penjelasan Detail `script.js` (Logika & Interaksi)
 
-### A. Pengaturan Event Utama
-- `document.addEventListener('DOMContentLoaded', () => { ... })`: Kode yang menjamin bahwa semua JavaScript di dalamnya HANYA dijalankan setelah struktur dasar HTML (DOM) selesai dimuat sepenuhnya.
+Script yang sangat ringkas nan kuat menggerakkan ekosistem animasi laman web.
 
-### B. Efek Scroll Navbar (`handleScroll`)
-- `window.scrollY`: Membaca posisi pengguna (berapa *pixel* sudah menggulir ke bawah).
-- Jika `scrollY > 60`, tambahkan kelas `scrolled` ke *navbar* (membuatnya memiliki latar gelap/blur dari CSS). Jika tidak, lepas kelas tersebut (membuat *navbar* transparan kembali di bagian teratas layar).
-- Algoritma pelacak posisi: Membaca letak/tinggi (`offsetTop` dan `offsetHeight`) setiap `<section>`. Jika posisi layar saat ini (`scrollY`) berada di dalam batas section tertentu, maka menu yang bersesuaian dengan id tersebut (seperti menu "About") akan ditambahkan kelas `.active` agar menyala.
+### A. Pengamanan Inisiasi DOM
+- `document.addEventListener('DOMContentLoaded', () => { ... })`: Sebuah pendeteksi mutlak yang menggaransi seluruh fungsi interaktif HANYA akan dipicu seketika tulang dan daging HTML serta CSS rampung ditafsirkan seutuhnya.
 
-### C. Hamburger Menu Layar Mobile
-- Menggunakan `addEventListener('click', ...)` pada ikon `.hamburger`. Saat diklik, *script* akan mengaktifkan peralihan kondisi (menggunakan `.classList.toggle`). Ini akan membuka panel navigasi (`.nav-links.open`) dan merubah bentuk tiga garis hamburger menjadi bentuk 'X' (`.hamburger.active`).
+### B. Otomasi Event Scroll
+- Memiliki rutinitas rutin (sebuah pengamat dinamis) yang dinamakan `handleScroll()`.
+- Mengintip hitungan ketinggian gulir peramban (`window.scrollY`). Melewati takaran 60px ke bawah berakibat melahirkan kelas tambahan `scrolled` di tag navigasi (memberi beban kegelapan latar dan bingkai di *navbar*).
+- Pada saat bersamaan, `handleScroll()` mengalkulasi kedudukan elevasi (`offsetTop`) dan dimensi setiap `section`. Ketika rentang gulir peramban manusia menyasar area wilayah presisi dari salah satu `section`, `navLinks` alias tautan di atasnya langsung diterangi sebagai "active", menunjukkkan kepada kita posisi kompas kita.
 
-### D. Animasi Mengetik (`typeEffect`)
-- Menggunakan pendekatan *Array* dan rekursi fungsi `setTimeout`.
-- Program mengekstrak kata dari array `roles` (contoh: "Data Analyst"). Menggunakan fungsi pemotong teks bawaan JS `substring()` untuk menampilkan huruf dari depan secara sekuensial (huruf ke-1, lalu ke-2, ke-3, dst).
-- Terdapat flag `isDeleting`. Jika kata sudah tertulis lengkap, variabel `typeSpeed` dibuat lambat agar teks diam sejenak, lalu `isDeleting` menjadi benar (*true*). Program kemudian membalik proses dengan mengurangi indeks huruf satu demi satu, hingga habis. Lalu beralih ke kata berikutnya di dalam Array `roles`.
+### C. Navigasi Taktis (Hamburger Menu Mobile)
+- Bilamana ukuran resolusi dipersempit (lebar HP), ikon garis tiga `.hamburger` muncul.
+- Mendengarkan insiden *click*, dan menjawabnya dengan metode _toggle_ (`classList.toggle('active')`), dimana garis burger itu berotasi drastis merangkai bilah silang 'X' sembari kelas pembungkus navigasi membuka dan menutup.
 
-### E. Pemantau Munculnya Elemen (Scroll Reveal)
-- Menggunakan API peramban (*browser*) canggih bernama `IntersectionObserver`. API ini jauh lebih efisien performanya dibanding membaca jarak gulir (`window.scrollY`) terus-menerus.
-- Observer mengawasi setiap kotak yang memiliki kelas `.reveal`. `threshold: 0.1` berarti "jika elemen tersebut minimal sudah masuk ke layar sebesar 10%". Jika ya (`isIntersecting == true`), maka kelas `active` disuntikkan ke elemen tersebut, yang memicu transisi `opacity: 1` di dalam file CSS (memunculkan elemen tersebut dari ghaib/transparan).
+### D. Sintesis Animasi Mesin Tik (Typing Effect)
+- Hadir mendefinisikan label profesi. Dikelola mesin waktu perulangan canggih bernama `setTimeout()`.
+- Menyiapkan himpunan kalimat di `array roles`.
+- Mekanismenya mengeja karakter satu persatu lewat sintaksis `substring()`. Memanjang maju dengan tempo santai (`100ms`). 
+- Sesampainya purna dirajut satu kata, proses dipause paksa (ditidurkan 2000 milidetik), sebelum secara tergesa-gesa mengubah wujud modenya ke mundur/penghapusan (`isDeleting = true`) bertempo ekstra cepat (50 milidetik) hingga lenyap dan memuat peran selanjutnya.
 
-### F. Filter Kategori Proyek
-- Menangkap setiap klik pada tombol berkelas `.filter-btn`.
-- Membaca data kategori yang melekat pada atribut HTML tombol (contoh: `data-filter="Machine Learning"`).
-- Melakukan iterasi (pengulangan) pada seluruh `.project-card`. Jika nilai atribut data kategori dari kartu sama dengan tombol yang diklik, hapus kelas `.hidden` (kartu ditampilkan). Jika berbeda, tambahkan kelas `.hidden` agar CSS menyembunyikan kartu tersebut (`display: none;`).
+### E. Penyingkap Konten Sensor-Silang (Intersection Observer)
+- Menghindari model animasi pemuatan zaman kuno yang rawan lag, web menugaskan API sensor presisi `IntersectionObserver`.
+- Mesin pintar ini diperintahkan untuk "Mengintai" seluruh wadah `<div class="reveal">`.
+- Setelan pelatuknya adalah `threshold: 0.1` (artinya saat sebuah elemen tertangkap kemunculannya 10% masuk layar), pengintai itu menembakkan suntikan stempel `active` terhadap sasaran. Reaksinya dipancarkan CSS untuk mengorbitkannya memudar-terlihat dari arah bawah.
 
-### G. Generator Partikel Latar (Particles)
-- Melakukan proses perulangan (`for` *loop*) sebanyak 30 kali.
-- Setiap putaran menciptakan sebuah elemen HTML baru (`document.createElement('div')`) secara *virtual*.
-- Elemen virtual tersebut diberi nama kelas `.particle`.
-- Menggunakan fungsi angka acak `Math.random()` untuk memberikan posisi titik koordinat X dan Y secara acak di layar, serta durasi kecepatan melayang secara acak, agar terlihat natural seperti debu atau percikan api kecil.
-- Setelah *properties* terbentuk, barulah diinjeksikan secara massal ke dalam `div.particles` di file HTML utama (`appendChild`).
-# Portofolio
-# Portofolio
+### F. Sistem Partikular Holografis
+- Skrip menciptakan perulangan sederhana `for (let i = 0; i < 30; i++)`. Proses *looping* ini mengeksekusi instruksi membuat partikel baru.
+- Menciptakan node div `<div class="particle">` sebanyak 30 keping dan menjatuhkannya ke elemen utama yang bernama `.particles` pada body. 
+- Tiap entitas dari puluhan unit partikel itu menerima sumbangan nomor koordinat sebaran X dan sebaran Y dengan nilai persentase campur aduk menggunakan keacakan `Math.random()`, dan juga kecepatan animasi yang beda-beda. Ini membentuk fenomena debu dan bunga api kosmik melayang natural tanpa sinkronisasi yang terlihat kaku.
+
+### G. Transisi Pergerakan Menukik (Smooth Anchor)
+- Baris kode paling pamungkas membidik semua tautan perantara berawalan tagar (seperti `href="#skills"`). Menjinakkan sifat natural kasar dari navigasi jangkar konvensional (`e.preventDefault()`). Menginterupsi lompatan mendadaknya dan menggeser layar turun/naik mulus memakai `target.scrollIntoView({ behavior: 'smooth' })`.

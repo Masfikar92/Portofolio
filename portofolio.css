@@ -1133,6 +1133,113 @@ section {
   display: none;
 }
 
+/* ---- CERTIFICATE SECTION ---- */
+.certificate {
+  background: var(--bg-primary);
+  position: relative;
+  padding: 120px 0;
+}
+
+.certificate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-steel), transparent);
+}
+
+.certificate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.certificate-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(220, 38, 38, 0.15);
+  padding: 25px;
+  position: relative;
+  transition: all 0.4s ease;
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+  display: flex;
+  flex-direction: column;
+}
+
+.certificate-card:hover {
+  border-color: rgba(220, 38, 38, 0.5);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.5), var(--shadow-glow);
+  transform: translateY(-10px);
+}
+
+.certificate-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.certificate-category {
+  font-family: var(--font-tech);
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-blood-light);
+  padding: 6px 14px;
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  background: rgba(220, 38, 38, 0.1);
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.2);
+}
+
+.certificate-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
+  border-radius: 8px;
+  object-fit: contain;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  display: block;
+  margin-bottom: 20px;
+}
+
+.certificate-link {
+  color: var(--color-text-muted);
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.certificate-link:hover {
+  color: #fff;
+  background: var(--color-blood);
+  box-shadow: 0 0 15px var(--color-blood);
+  transform: rotate(45deg);
+}
+
+.certificate-link svg {
+  width: 22px;
+  height: 22px;
+}
+
+.certificate-body h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.certificate-body p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
 /* ---- HOBBIES SECTION ---- */
 .hobbies {
   position: relative;
