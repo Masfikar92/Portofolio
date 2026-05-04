@@ -1138,6 +1138,19 @@ section {
   background: var(--bg-primary);
   position: relative;
   padding: 120px 0;
+  overflow: hidden;
+}
+
+/* Tech pattern background for certificate section */
+.certificate::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(220, 38, 38, 0.05) 0%, transparent 60%);
+  pointer-events: none;
 }
 
 .certificate::before {
@@ -1152,92 +1165,162 @@ section {
 
 .certificate-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 40px;
-  margin-top: 40px;
+  margin-top: 50px;
+  position: relative;
+  z-index: 1;
 }
 
 .certificate-card {
-  background: var(--bg-card);
-  border: 1px solid rgba(220, 38, 38, 0.15);
-  padding: 25px;
+  background: rgba(10, 10, 20, 0.6);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  padding: 20px;
   position: relative;
-  transition: all 0.4s ease;
-  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
   display: flex;
   flex-direction: column;
+  backdrop-filter: blur(5px);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+/* Glowing tech border on hover */
+.certificate-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  background: linear-gradient(45deg, var(--color-blood) 0%, transparent 40%, transparent 60%, var(--color-blood) 100%) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+/* Floating decorative text */
+.certificate-card::before {
+  content: 'CERT //';
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-family: var(--font-tech);
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 2px;
+  transition: all 0.4s ease;
+  z-index: 2;
 }
 
 .certificate-card:hover {
-  border-color: rgba(220, 38, 38, 0.5);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.5), var(--shadow-glow);
-  transform: translateY(-10px);
+  background: rgba(25, 25, 45, 0.9);
+  border-color: transparent;
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6), var(--shadow-glow);
 }
 
-.certificate-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.certificate-card:hover::after {
+  opacity: 1;
+}
+
+.certificate-card:hover::before {
+  color: var(--color-blood);
+  text-shadow: 0 0 8px var(--color-blood-glow);
+}
+
+.certificate-img-wrapper {
+  position: relative;
+  overflow: hidden;
   margin-bottom: 20px;
+  border-radius: 4px;
+  clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
 }
 
-.certificate-category {
-  font-family: var(--font-tech);
-  font-size: 0.6rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--color-blood-light);
-  padding: 6px 14px;
-  border: 1px solid rgba(220, 38, 38, 0.4);
-  background: rgba(220, 38, 38, 0.1);
-  box-shadow: 0 0 10px rgba(220, 38, 38, 0.2);
+/* Scanline animation element */
+.certificate-img-wrapper::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, transparent, rgba(220, 38, 38, 0.2), transparent);
+  transition: all 0s;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.certificate-card:hover .certificate-img-wrapper::after {
+  animation: certScan 2s linear infinite;
+}
+
+@keyframes certScan {
+  0% { top: -50%; }
+  100% { top: 150%; }
 }
 
 .certificate-image {
   width: 100%;
-  height: auto;
-  aspect-ratio: 4/3;
-  border-radius: 8px;
-  object-fit: contain;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(220, 38, 38, 0.3);
+  height: 220px;
+  object-fit: cover;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: block;
-  margin-bottom: 20px;
+  transition: all 0.5s ease;
+  filter: grayscale(60%) contrast(1.1);
+  position: relative;
+  z-index: 1;
 }
 
-.certificate-link {
-  color: var(--color-text-muted);
-  transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 8px;
-  border-radius: 50%;
+.certificate-card:hover .certificate-image {
+  filter: grayscale(0%) contrast(1.2);
+  border-color: var(--color-blood);
+  transform: scale(1.05);
 }
 
-.certificate-link:hover {
-  color: #fff;
-  background: var(--color-blood);
-  box-shadow: 0 0 15px var(--color-blood);
-  transform: rotate(45deg);
-}
-
-.certificate-link svg {
-  width: 22px;
-  height: 22px;
-}
-
-.certificate-body h3 {
+.certificate-card h3 {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  color: #fff;
-  margin-bottom: 12px;
+  color: var(--color-silver-light);
+  margin-bottom: 10px;
   letter-spacing: 1px;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-left: 15px;
 }
 
-.certificate-body p {
+.certificate-card h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 0;
+  background: var(--color-blood);
+  transition: height 0.4s ease;
+}
+
+.certificate-card:hover h3 {
+  color: #fff;
+}
+
+.certificate-card:hover h3::before {
+  height: 100%;
+}
+
+.certificate-card p {
   color: var(--color-text-muted);
-  font-size: 0.95rem;
-  line-height: 1.7;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  font-family: var(--font-tech);
+  letter-spacing: 1px;
+  padding-left: 15px;
 }
 
 /* ---- HOBBIES SECTION ---- */

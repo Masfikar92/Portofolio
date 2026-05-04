@@ -331,34 +331,44 @@
 
     <!-- Certificate -->
      <section class="certificate" id="certificate">
-        <div>
+        <div class="container">
                 <span class="section-tag reveal">Certificate</span>
                 <h2 class="section-title reveal">Sertifikat</h2>
                 <p class="section-desc reveal">Sertifikat yang saya peroleh selama pembelajaran.</p>
     
                 <div class="certificate-grid">
                     <div class="certificate-card reveal">
-                        <img src="Dasar_data_science.png" alt="Certificate Dasar Data Science" class="certificate-image">
+                        <div class="certificate-img-wrapper">
+                            <img src="Dasar_data_science.png" alt="Certificate Dasar Data Science" class="certificate-image">
+                        </div>
                         <h3>Belajar Dasar Data Science</h3>
                         <p>Coding Camp DBS Foundation</p>
                     </div>
                     <div class="certificate-card reveal">
-                        <img src="image.png" alt="Certificate Machine Learning" class="certificate-image">
+                        <div class="certificate-img-wrapper">
+                            <img src="image.png" alt="Certificate Machine Learning" class="certificate-image">
+                        </div>
                         <h3>Machine Learning Untuk Pemula</h3>
                         <p>Coding Camp DBS Foundation</p>
                     </div>
                     <div class="certificate-card reveal">
-                        <img src="Fundamental_analisis_data.png" alt="Certificate Fundamental Analisis Data" class="certificate-image">
+                        <div class="certificate-img-wrapper">
+                            <img src="Fundamental_analisis_data.png" alt="Certificate Fundamental Analisis Data" class="certificate-image">
+                        </div>
                         <h3>Fundamental Analisis Data</h3>
                         <p>Coding Camp DBS Foundation</p>
                     </div>
                     <div class="certificate-card reveal">
-                        <img src="Dasar_visualisasi.png" alt="Certificate Visualisasi Data" class="certificate-image">
+                        <div class="certificate-img-wrapper">
+                            <img src="Dasar_visualisasi.png" alt="Certificate Visualisasi Data" class="certificate-image">
+                        </div>
                         <h3>Belajar Visualisasi Data</h3>
                         <p>Coding Camp DBS Foundation</p>
                     </div>
                     <div class="certificate-card reveal">
-                        <img src="python.png" alt="Certificate Pemrograman Python" class="certificate-image">
+                        <div class="certificate-img-wrapper">
+                            <img src="python.png" alt="Certificate Pemrograman Python" class="certificate-image">
+                        </div>
                         <h3>Memulai Pemrograman Dengan Python</h3>
                         <p>Coding Camp DBS Foundation</p>
                     </div>
@@ -478,7 +488,7 @@
     <footer class="footer">
         <div class="container">
             <p class="footer-quote">"Data represents the past, but understanding it shapes the future."</p>
-            <p>© 2026 Muhammad <span>Zulfikar</span> All Rights Reserved</p>
+            <p>© 2026 Muhammad <span>Zulfikar</span></p>
         </div>
     </footer>
     <!-- Script untuk animasi partikel, teks ketik, dan memunculkan elemen saat scroll (reveal) -->
