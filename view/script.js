@@ -1,10 +1,5 @@
-/* ============================================
-   ANIME 86 — PORTFOLIO SCRIPTS
-   ============================================ */
-
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ---- NAVBAR SCROLL EFFECT ----
   const navbar = document.querySelector('.navbar');
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
@@ -12,14 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function handleScroll() {
     const scrollY = window.scrollY;
 
-    // Navbar background on scroll
     if (scrollY > 60) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
     }
 
-    // Active link highlight
     sections.forEach(section => {
       const sectionTop = section.offsetTop - 120;
       const sectionHeight = section.offsetHeight;
@@ -39,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', handleScroll);
   handleScroll();
 
-  // ---- MOBILE MENU ----
   const hamburger = document.querySelector('.hamburger');
   const navLinksContainer = document.querySelector('.nav-links');
 
@@ -55,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ---- TYPING ANIMATION ----
   const typedElement = document.querySelector('.typed-text');
   const roles = ['Data Science & AI Enthusiast', 'Data Analyst', 'UI/UX Designer'];
   let roleIndex = 0;
@@ -90,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   typeEffect();
 
-  // ---- SCROLL REVEAL ----
   const revealElements = document.querySelectorAll('.reveal');
 
   const revealObserver = new IntersectionObserver((entries) => {
@@ -106,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealElements.forEach(el => revealObserver.observe(el));
 
-  // ---- PORTFOLIO FILTER ----
   const filterBtns = document.querySelectorAll('.filter-btn');
   const projectCards = document.querySelectorAll('.project-card');
 
@@ -128,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ---- PARTICLES ----
   const particlesContainer = document.querySelector('.particles');
   if (particlesContainer) {
     for (let i = 0; i < 30; i++) {
@@ -142,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ---- SMOOTH SCROLL FOR ALL ANCHOR LINKS ----
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -153,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ---- 3D TILT EFFECT FOR CERTIFICATES ----
   const certCards = document.querySelectorAll('.certificate-card');
   
   certCards.forEach(card => {

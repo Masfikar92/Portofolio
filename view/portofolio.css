@@ -5,7 +5,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700&display=swap');
 
-/* ---- CSS Variables ---- */
 :root {
   --bg-primary: #050508;
   --bg-secondary: #0a0a14;
@@ -31,7 +30,6 @@
   --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* ---- Reset & Base ---- */
 *,
 *::before,
 *::after {
@@ -53,7 +51,6 @@ body {
   overflow-x: hidden;
 }
 
-/* CRT Overlay Effect */
 body::before {
   content: '';
   position: fixed;
@@ -72,7 +69,6 @@ body::before {
   z-index: 9999;
 }
 
-/* Vignette Effect */
 body::after {
   content: '';
   position: fixed;
@@ -94,7 +90,6 @@ img {
   max-width: 100%;
 }
 
-/* ---- Custom Scrollbar ---- */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -109,7 +104,6 @@ img {
   background: var(--color-blood);
 }
 
-/* ---- Utility ---- */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -172,7 +166,6 @@ section {
   position: relative;
 }
 
-/* Hexagon Grid Background Overlay */
 .bg-grid {
   position: absolute;
   top: 0;
@@ -186,7 +179,6 @@ section {
   pointer-events: none;
 }
 
-/* ---- NAVBAR ---- */
 .navbar {
   position: fixed;
   top: 0;
