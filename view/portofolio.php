@@ -36,7 +36,6 @@
     <section class="hero" id="home">
         <div class="hero-bg">
             <video autoplay muted loop playsinline>
-                <!-- Sesuaikan dengan lokasi video jika ada, atau tambahkan '../Source/Background/hero-video.webm' -->
                 <source src="../Source/Background/hero-video.webm" type="video/webm">
             </video>
         </div>
