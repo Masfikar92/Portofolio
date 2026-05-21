@@ -62,7 +62,7 @@
                 <div class="about-image-wrapper reveal">
                     <!-- Sesuaikan src gambar ke folder jika diperlukan -->
                     <div class="scan-line"></div>
-                    <img src="../Source/Background/OIP_hd.png" alt="Muhammad Zulfikar" class="about-image">
+                    <img src="../Source/Background/foto.png" alt="Muhammad Zulfikar" class="about-image">
                 </div>
                 <div class="about-text reveal">
                     <span class="section-tag">Personal File</span>
@@ -339,35 +339,35 @@
                 <div class="certificate-grid">
                     <div class="certificate-card reveal">
                         <div class="certificate-img-wrapper">
-                            <img src="../Source/Certificates/Dasar_data_science.png" alt="Certificate Dasar Data Science" class="certificate-image">
+                            <img src="../Source/Certificate/Dasar_data_science.png" alt="Certificate Dasar Data Science" class="certificate-image">
                         </div>
                         <h3>Belajar Dasar Data Science</h3>
                         <p>Coding Camp DBS Foundation</p>
                     </div>
                     <div class="certificate-card reveal">
                         <div class="certificate-img-wrapper">
-                            <img src="../Source/Certificates/Machine_Learning.png" alt="Certificate Machine Learning" class="certificate-image">
+                            <img src="../Source/Certificate/image.png" alt="Certificate Machine Learning" class="certificate-image">
                         </div>
                         <h3>Machine Learning Untuk Pemula</h3>
                         <p>Coding Camp DBS Foundation</p>
                     </div>
                     <div class="certificate-card reveal">
                         <div class="certificate-img-wrapper">
-                            <img src="../Source/Certificates/Fundamental_analisis_data.png" alt="Certificate Fundamental Analisis Data" class="certificate-image">
+                            <img src="../Source/Certificate/Fundamental_analisis_data.png" alt="Certificate Fundamental Analisis Data" class="certificate-image">
                         </div>
                         <h3>Fundamental Analisis Data</h3>
                         <p>Coding Camp DBS Foundation</p>
                     </div>
                     <div class="certificate-card reveal">
                         <div class="certificate-img-wrapper">
-                            <img src="../Source/Certificates/Dasar_visualisasi.png" alt="Certificate Visualisasi Data" class="certificate-image">
+                            <img src="../Source/Certificate/Dasar_visualisasi.png" alt="Certificate Visualisasi Data" class="certificate-image">
                         </div>
                         <h3>Belajar Visualisasi Data</h3>
                         <p>Coding Camp DBS Foundation</p>
                     </div>
                     <div class="certificate-card reveal">
                         <div class="certificate-img-wrapper">
-                            <img src="../Source/Certificates/Python.png" alt="Certificate Pemrograman Python" class="certificate-image">
+                            <img src="../Source/Certificate/Python.png" alt="Certificate Pemrograman Python" class="certificate-image">
                         </div>
                         <h3>Memulai Pemrograman Dengan Python</h3>
                         <p>Coding Camp DBS Foundation</p>
